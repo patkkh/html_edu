@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Date</title>
+		<script type="text/javascript">
+			function CreateDate(){
+				const ndate = new Date();
+				const Month = ndate.getMonth() + 1; 
+				const Year  = ndate.getFullYear();
+				const Day  = ndate.getDate();
+				var selectYear = document.cdate.year;
+				var iy = 0;
+				for ( var yr = 2012 ; yr <= Year; yr++) {
+					var objOption = document.createElement("option");
+					objOption.text=yr;
+					objOption.value=yr;
+					selectYear.options.add(objOption);
+					iy = iy + 1;
+				}
+				var selectMonth = document.cdate.month;
+				for ( var mo = 1 ; mo <= Month; mo++) {
+					var objOption = document.createElement("option");
+					objOption.text=mo;
+					objOption.value=mo;
+					selectMonth.options.add(objOption);
+				}
+				var selectDay = document.cdate.day;
+				for ( var dy = 1 ; dy <= Day; dy++) {
+					var objOption = document.createElement("option");
+					objOption.text=dy;
+					objOption.value=dy;
+					selectDay.options.add(objOption);
+				}
+				var target = document.getElementById('day');
+				target.options[Day-1].selected = true;
+				document.getElementById('month').options[Month-1].selected = true;
+				document.getElementById('year').options[iy-1].selected = true;
+				console.log(iy);
+			}
+			function ChangeMonth(){
+				const month = document.getElementById("month").value;
+				const year  = document.getElementById("year").value;
+				const lastday = new Date(year, month, 0).getDate();
+				console.log(lastday);
+				var selectDay = document.getElementById("day");
+				selectDay.options.length = 0;
+				for (dy = 1 ; dy <= lastday ; dy ++) { 
+					var objOption = document.createElement("option");
+					objOption.text=dy;
+					objOption.value=dy;
+					selectDay.options.add(objOption);
+				}
+			}
+                        function ChangeYear(){
+                                const year  = document.getElementById("year").value;
+                                var selectMonth = document.getElementById("month");
+                                selectMonth.options.length = 0;
+                                for (mo = 1 ; mo <= 12 ; mo ++) {
+                                        var objOption = document.createElement("option");
+                                        objOption.text=mo;
+                                        objOption.value=mo;
+                                        selectMonth.options.add(objOption);
+                                }
+                                const month = document.getElementById("month").value;
+                                const lastday = new Date(year, month, 0).getDate();
+                                console.log(lastday);
+                                var selectDay = document.getElementById("day");
+                                selectDay.options.length = 0;
+                                for (dy = 1 ; dy <= lastday ; dy ++) {
+                                        var objOption = document.createElement("option");
+                                        objOption.text=dy;
+                                        objOption.value=dy;
+                                        selectDay.options.add(objOption);
+                                }
+                        }
+		</script>
+	</head>
+
+	<body onLoad="CreateDate();">
+		<form name="cdate" id="cdate" method="post" action="">
+		<p>Select</p>
+		<table border="1"> 
+			<tr align="center">
+				<td width="100">
+					Year
+				</td>
+				<td width="100">
+					Month
+				</td>
+				<td width="100">
+					Day
+				</td>
+				<td width="100">
+					Submit
+				</td>
+			</tr>
+			<tr align="center">
+				<td>
+					<select id="year" name="year" onChange="ChangeYear();"> </select>
+				</td>
+				<td>
+					<select name="month" id="month" onChange="ChangeMonth();"> </select>
+				</td>
+				<td>
+					<select name="day" id="day"> </select>
+				</td>
+				<td>
+					<input type="submit" name="submit" value="submit">
+				</td>
+			</tr>
+		</table>
+		</form>
+
+	</body>
+</html>

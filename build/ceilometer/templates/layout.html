@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="kr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/w3.css') }}">
+    <title>Flask 블로그</title>
+  </head>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <body>
+    <header>
+    <!--
+      <nav>
+        <a href="/">Flask 블로그</a>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+      </nav>
+      <hr>
+    -->
+    </header>
+ 
+    <main role="main">
+    <!-- Main content block -->
+    {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
